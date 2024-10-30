@@ -45,14 +45,15 @@ rm "$data/preprocessed/train.$tgt.p"
 num_merges=20000
 bpe_scripts=/Users/qiguo/miniforge3/lib/python3.12/site-packages/subword_nmt
 
-cat "$data/preprocessed/train.$src" | python $bpe_scripts/learn_bpe.py -s $num_merges > "$data/preprocessed/train.$src.bpe"
-cat "$data/preprocessed/train.$tg"t | python $bpe_scripts/learn_bpe.py -s $num_merges > "$data/preprocessed/train.$tgt.bpe"
+cat $data/preprocessed/train.$src | python $bpe_scripts/learn_bpe.py -s $num_merges > $data/preprocessed/train.$src.bpe
+cat $data/preprocessed/train.$tgt | python $bpe_scripts/learn_bpe.py -s $num_merges > $data/preprocessed/train.$tgt.bpe
 
-cat "$data/preprocessed/train.$src" | python $bpe_scripts/apply_bpe.py -c "$data/preprocessed/train.$src.bpe" > "$data/preprocessed/train.$src.bpe.applied"
-cat "$data/preprocessed/train.$tgt" | python $bpe_scripts/apply_bpe.py -c "$data/preprocessed/train.$tgt.bpe" > "$data/preprocessed/train.$tgt.bpe.applied"
+cat $data/preprocessed/train.$src | python $bpe_scripts/apply_bpe.py -c $data/preprocessed/train.$src.bpe > $data/preprocessed/train.$src.bpe.applied
+cat $data/preprocessed/train.$tgt | python $bpe_scripts/apply_bpe.py -c $data/preprocessed/train.$tgt.bpe > $data/preprocessed/train.$tgt.bpe.applied
+
 ###############
 
 # preprocess all files for model training
-python preprocess.py --target-lang $tgt --source-lang $src --dest-dir "$data/prepared/" --train-prefix $data/preprocessed/train --valid-prefix "$data/preprocessed/valid" --test-prefix "$data/preprocessed/test" --tiny-train-prefix "$data/preprocessed/tiny_train" --threshold-src 1 --threshold-tgt 1 --num-words-src 4000 --num-words-tgt 4000
+python preprocess.py --target-lang $tgt --source-lang $src --dest-dir $data/prepared/ --train-prefix $data/preprocessed/train --valid-prefix $data/preprocessed/valid --test-prefix $data/preprocessed/test --tiny-train-prefix $data/preprocessed/tiny_train --threshold-src 1 --threshold-tgt 1 --num-words-src 4000 --num-words-tgt 4000
 
 echo "done!"
