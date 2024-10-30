@@ -1,0 +1,177 @@
+Last login: Wed Oct 30 16:47:24 on ttys000
+(base) qiguo@Millennium-Falcon atmt_2024 % conda activate atmt311
+(atmt311) qiguo@Millennium-Falcon atmt_2024 % ls
+2024			Translation		preprocess.py
+Advanced		UZH			requirements.txt
+Data_Exploration.ipynb	__pycache__		scripts
+Herbst			assignments		seq2seq
+LICENSE			bible_translations.txt	share
+Machine			data			train.py
+README.md		moses_scripts		translate.py
+Techniques		of			translate_beam.py
+(atmt311) qiguo@Millennium-Falcon atmt_2024 % cd assignments/03 
+(atmt311) qiguo@Millennium-Falcon 03 % ls
+README.md		preprocess_data.sh
+baseline		preprocess_data_ori.sh
+(atmt311) qiguo@Millennium-Falcon 03 % bash preprocess_data_ori.sh
+[2024-10-30 16:48:31] COMMAND: preprocess.py --target-lang en --source-lang fr --dest-dir /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//prepared/ --train-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train --valid-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid --test-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test --tiny-train-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train --threshold-src 1 --threshold-tgt 1 --num-words-src 4000 --num-words-tgt 4000
+[2024-10-30 16:48:31] Arguments: {'source_lang': 'fr', 'target_lang': 'en', 'train_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train', 'tiny_train_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train', 'valid_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid', 'test_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test', 'dest_dir': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//prepared/', 'threshold_src': 1, 'num_words_src': 4000, 'threshold_tgt': 1, 'num_words_tgt': 4000, 'vocab_src': None, 'vocab_trg': None, 'quiet': False}
+[2024-10-30 16:48:31] COMMAND: preprocess.py --target-lang en --source-lang fr --dest-dir /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//prepared/ --train-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train --valid-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid --test-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test --tiny-train-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train --threshold-src 1 --threshold-tgt 1 --num-words-src 4000 --num-words-tgt 4000
+[2024-10-30 16:48:31] Arguments: {'source_lang': 'fr', 'target_lang': 'en', 'train_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train', 'tiny_train_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train', 'valid_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid', 'test_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test', 'dest_dir': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//prepared/', 'threshold_src': 1, 'num_words_src': 4000, 'threshold_tgt': 1, 'num_words_tgt': 4000, 'vocab_src': None, 'vocab_trg': None, 'quiet': False}
+[2024-10-30 16:48:31] Built a source dictionary (fr) with 4000 words
+[2024-10-30 16:48:31] Built a target dictionary (en) with 4000 words
+[2024-10-30 16:48:31] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train.fr: 10000 sentences, 100137 tokens, 4.242% replaced by unknown token
+[2024-10-30 16:48:31] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train.fr: 1000 sentences, 10029 tokens, 6.621% replaced by unknown token
+[2024-10-30 16:48:31] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid.fr: 500 sentences, 5037 tokens, 6.154% replaced by unknown token
+[2024-10-30 16:48:31] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test.fr: 500 sentences, 4990 tokens, 6.774% replaced by unknown token
+[2024-10-30 16:48:32] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train.en: 10000 sentences, 91000 tokens, 2.430% replaced by unknown token
+[2024-10-30 16:48:32] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train.en: 1000 sentences, 9142 tokens, 4.627% replaced by unknown token
+[2024-10-30 16:48:32] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid.en: 500 sentences, 4568 tokens, 4.313% replaced by unknown token
+[2024-10-30 16:48:32] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test.en: 500 sentences, 4560 tokens, 5.197% replaced by unknown token
+done!
+(atmt311) qiguo@Millennium-Falcon 03 % bash preprocess_data.sh
+pwd directory: /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03
+Base directory: /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../..
+ 34%|############8                         | 6746/20000 [00:03<00:08, 1494.05it/s]no pair has frequency >= 2. Stopping
+ 34%|############9                         | 6801/20000 [00:03<00:06, 1932.53it/s]
+ 28%|##########6                           | 5597/20000 [00:01<00:06, 2202.83it/s]no pair has frequency >= 2. Stopping
+ 28%|##########7                           | 5679/20000 [00:01<00:05, 2852.16it/s]
+[2024-10-30 16:57:55] COMMAND: preprocess.py --target-lang en --source-lang fr --dest-dir /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//prepared/ --train-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train --valid-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid --test-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test --tiny-train-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train --threshold-src 1 --threshold-tgt 1 --num-words-src 4000 --num-words-tgt 4000
+[2024-10-30 16:57:55] Arguments: {'source_lang': 'fr', 'target_lang': 'en', 'train_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train', 'tiny_train_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train', 'valid_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid', 'test_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test', 'dest_dir': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//prepared/', 'threshold_src': 1, 'num_words_src': 4000, 'threshold_tgt': 1, 'num_words_tgt': 4000, 'vocab_src': None, 'vocab_trg': None, 'quiet': False}
+[2024-10-30 16:57:55] COMMAND: preprocess.py --target-lang en --source-lang fr --dest-dir /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//prepared/ --train-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train --valid-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid --test-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test --tiny-train-prefix /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train --threshold-src 1 --threshold-tgt 1 --num-words-src 4000 --num-words-tgt 4000
+[2024-10-30 16:57:55] Arguments: {'source_lang': 'fr', 'target_lang': 'en', 'train_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train', 'tiny_train_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train', 'valid_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid', 'test_prefix': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test', 'dest_dir': '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//prepared/', 'threshold_src': 1, 'num_words_src': 4000, 'threshold_tgt': 1, 'num_words_tgt': 4000, 'vocab_src': None, 'vocab_trg': None, 'quiet': False}
+[2024-10-30 16:57:55] Built a source dictionary (fr) with 4000 words
+[2024-10-30 16:57:55] Built a target dictionary (en) with 4000 words
+[2024-10-30 16:57:56] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train.fr: 10000 sentences, 100137 tokens, 4.242% replaced by unknown token
+[2024-10-30 16:57:56] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train.fr: 1000 sentences, 10029 tokens, 6.621% replaced by unknown token
+[2024-10-30 16:57:56] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid.fr: 500 sentences, 5037 tokens, 6.154% replaced by unknown token
+[2024-10-30 16:57:56] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test.fr: 500 sentences, 4990 tokens, 6.774% replaced by unknown token
+[2024-10-30 16:57:56] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/train.en: 10000 sentences, 91000 tokens, 2.431% replaced by unknown token
+[2024-10-30 16:57:56] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/tiny_train.en: 1000 sentences, 9142 tokens, 4.627% replaced by unknown token
+[2024-10-30 16:57:56] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/valid.en: 500 sentences, 4568 tokens, 4.313% replaced by unknown token
+[2024-10-30 16:57:56] Built a binary dataset for /Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/../../data/en-fr//preprocessed/test.en: 500 sentences, 4560 tokens, 5.197% replaced by unknown token
+done!
+(atmt311) qiguo@Millennium-Falcon 03 % python train.py \
+--data data/en-fr/prepared \
+--source-lang fr \
+--target-lang en \
+--save-dir assignments/03/baseline/checkpoints_bpe
+python: can't open file '/Users/qiguo/Documents/GitHub/atmt_2024/assignments/03/train.py': [Errno 2] No such file or directory
+(atmt311) qiguo@Millennium-Falcon 03 % cd ..
+(atmt311) qiguo@Millennium-Falcon assignments % ls
+01	03
+(atmt311) qiguo@Millennium-Falcon assignments % cd ..
+(atmt311) qiguo@Millennium-Falcon atmt_2024 % ls
+2024			Translation		preprocess.py
+Advanced		UZH			requirements.txt
+Data_Exploration.ipynb	__pycache__		scripts
+Herbst			assignments		seq2seq
+LICENSE			bible_translations.txt	share
+Machine			data			train.py
+README.md		moses_scripts		translate.py
+Techniques		of			translate_beam.py
+(atmt311) qiguo@Millennium-Falcon atmt_2024 % python train.py \
+--data data/en-fr/prepared \
+--source-lang fr \
+--target-lang en \
+--save-dir assignments/03/baseline/checkpoints_bpe
+INFO: Commencing training!
+INFO: COMMAND: train.py --data data/en-fr/prepared --source-lang fr --target-lang en --save-dir assignments/03/baseline/checkpoints_bpe
+INFO: Arguments: {'cuda': False, 'data': 'data/en-fr/prepared', 'source_lang': 'fr', 'target_lang': 'en', 'max_tokens': None, 'batch_size': 1, 'train_on_tiny': False, 'arch': 'lstm', 'max_epoch': 10000, 'clip_norm': 4.0, 'lr': 0.0003, 'patience': 3, 'log_file': None, 'save_dir': 'assignments/03/baseline/checkpoints_bpe', 'restore_file': 'checkpoint_last.pt', 'save_interval': 1, 'no_save': False, 'epoch_checkpoints': False, 'encoder_embed_dim': 64, 'encoder_embed_path': None, 'encoder_hidden_size': 64, 'encoder_num_layers': 1, 'encoder_bidirectional': 'True', 'encoder_dropout_in': 0.25, 'encoder_dropout_out': 0.25, 'decoder_embed_dim': 64, 'decoder_embed_path': None, 'decoder_hidden_size': 128, 'decoder_num_layers': 1, 'decoder_dropout_in': 0.25, 'decoder_dropout_out': 0.25, 'decoder_use_attention': 'True', 'decoder_use_lexical_model': 'False', 'device_id': 0}
+INFO: Loaded a source dictionary (fr) with 4000 words
+INFO: Loaded a target dictionary (en) with 4000 words
+INFO: Built a model with 1308576 parameters
+INFO: Epoch 000: loss 4.525 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 31.51 | clip 0.9984
+INFO: Epoch 000: valid_loss 4.83 | num_tokens 9.14 | batch_size 500 | valid_perplexity 125
+INFO: Epoch 001: loss 3.85 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 37.53 | clip 1
+INFO: Epoch 001: valid_loss 4.81 | num_tokens 9.14 | batch_size 500 | valid_perplexity 123
+INFO: Epoch 002: loss 3.526 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 40.74 | clip 1
+INFO: Epoch 002: valid_loss 4.51 | num_tokens 9.14 | batch_size 500 | valid_perplexity 91.1
+INFO: Epoch 003: loss 3.326 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 42.91 | clip 1
+INFO: Epoch 003: valid_loss 4.27 | num_tokens 9.14 | batch_size 500 | valid_perplexity 71.3
+INFO: Epoch 004: loss 3.184 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 45.04 | clip 1
+INFO: Epoch 004: valid_loss 3.96 | num_tokens 9.14 | batch_size 500 | valid_perplexity 52.7
+INFO: Epoch 005: loss 3.066 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 46.39 | clip 1
+INFO: Epoch 005: valid_loss 3.87 | num_tokens 9.14 | batch_size 500 | valid_perplexity 47.8
+INFO: Epoch 006: loss 2.958 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 47.43 | clip 1
+INFO: Epoch 006: valid_loss 3.76 | num_tokens 9.14 | batch_size 500 | valid_perplexity 42.9
+INFO: Epoch 007: loss 2.867 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 49.16 | clip 0.9998
+INFO: Epoch 007: valid_loss 3.59 | num_tokens 9.14 | batch_size 500 | valid_perplexity 36.2
+INFO: Epoch 008: loss 2.789 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 49.93 | clip 1
+INFO: Epoch 008: valid_loss 3.42 | num_tokens 9.14 | batch_size 500 | valid_perplexity 30.6
+INFO: Epoch 009: loss 2.715 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 50.06 | clip 1
+INFO: Epoch 009: valid_loss 3.38 | num_tokens 9.14 | batch_size 500 | valid_perplexity 29.4
+INFO: Epoch 010: loss 2.651 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 50.63 | clip 1
+INFO: Epoch 010: valid_loss 3.36 | num_tokens 9.14 | batch_size 500 | valid_perplexity 28.8
+INFO: Epoch 011: loss 2.587 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.07 | clip 1
+INFO: Epoch 011: valid_loss 3.21 | num_tokens 9.14 | batch_size 500 | valid_perplexity 24.7
+INFO: Epoch 012: loss 2.542 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.73 | clip 1
+INFO: Epoch 012: valid_loss 3.14 | num_tokens 9.14 | batch_size 500 | valid_perplexity 23
+INFO: Epoch 013: loss 2.493 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.77 | clip 0.9999
+INFO: Epoch 013: valid_loss 3.06 | num_tokens 9.14 | batch_size 500 | valid_perplexity 21.4
+INFO: Epoch 014: loss 2.45 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.91 | clip 0.9998
+INFO: Epoch 014: valid_loss 3.04 | num_tokens 9.14 | batch_size 500 | valid_perplexity 20.9
+INFO: Epoch 015: loss 2.413 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.53 | clip 0.9998
+INFO: Epoch 015: valid_loss 3.05 | num_tokens 9.14 | batch_size 500 | valid_perplexity 21.2
+INFO: Epoch 016: loss 2.366 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.95 | clip 0.9996
+INFO: Epoch 016: valid_loss 2.96 | num_tokens 9.14 | batch_size 500 | valid_perplexity 19.2
+INFO: Epoch 017: loss 2.334 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 52.52 | clip 0.9996
+INFO: Epoch 017: valid_loss 2.93 | num_tokens 9.14 | batch_size 500 | valid_perplexity 18.8
+INFO: Epoch 018: loss 2.307 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 52.19 | clip 0.9998
+INFO: Epoch 018: valid_loss 2.86 | num_tokens 9.14 | batch_size 500 | valid_perplexity 17.4
+INFO: Epoch 019: loss 2.27 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.87 | clip 0.9993
+INFO: Epoch 019: valid_loss 2.86 | num_tokens 9.14 | batch_size 500 | valid_perplexity 17.5
+INFO: Epoch 020: loss 2.249 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.89 | clip 0.9997
+INFO: Epoch 020: valid_loss 2.74 | num_tokens 9.14 | batch_size 500 | valid_perplexity 15.4
+INFO: Epoch 021: loss 2.219 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.59 | clip 0.9995
+INFO: Epoch 021: valid_loss 2.75 | num_tokens 9.14 | batch_size 500 | valid_perplexity 15.6
+INFO: Epoch 022: loss 2.205 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.65 | clip 0.9992
+INFO: Epoch 022: valid_loss 2.8 | num_tokens 9.14 | batch_size 500 | valid_perplexity 16.4
+INFO: Epoch 023: loss 2.184 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.65 | clip 0.9997
+INFO: Epoch 023: valid_loss 2.73 | num_tokens 9.14 | batch_size 500 | valid_perplexity 15.4
+INFO: Epoch 024: loss 2.159 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.33 | clip 0.9994                     
+INFO: Epoch 024: valid_loss 2.67 | num_tokens 9.14 | batch_size 500 | valid_perplexity 14.4
+INFO: Epoch 025: loss 2.142 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.23 | clip 0.9991                     
+INFO: Epoch 025: valid_loss 2.65 | num_tokens 9.14 | batch_size 500 | valid_perplexity 14.2
+INFO: Epoch 026: loss 2.128 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.24 | clip 0.9994                     
+INFO: Epoch 026: valid_loss 2.64 | num_tokens 9.14 | batch_size 500 | valid_perplexity 14
+INFO: Epoch 027: loss 2.11 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.14 | clip 0.9983                      
+INFO: Epoch 027: valid_loss 2.58 | num_tokens 9.14 | batch_size 500 | valid_perplexity 13.2
+INFO: Epoch 028: loss 2.092 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.1 | clip 0.9981                      
+INFO: Epoch 028: valid_loss 2.61 | num_tokens 9.14 | batch_size 500 | valid_perplexity 13.5
+INFO: Epoch 029: loss 2.076 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.59 | clip 0.9987                     
+INFO: Epoch 029: valid_loss 2.6 | num_tokens 9.14 | batch_size 500 | valid_perplexity 13.5
+INFO: Epoch 030: loss 2.06 | lr 0.0003 | num_tokens 9.1 | batch_size 1 | grad_norm 51.42 | clip 0.9982                      
+INFO: Epoch 030: valid_loss 2.59 | num_tokens 9.14 | batch_size 500 | valid_perplexity 13.3
+INFO: No validation set improvements observed for 3 epochs. Early stop!
+(atmt311) qiguo@Millennium-Falcon atmt_2024 % python translate.py \
+--data data/en-fr/prepared \
+--dicts data/en-fr/prepared \
+--checkpoint-path assignments/03/baseline/checkpoints_bpe/checkpoint_best.pt \
+--output assignments/03/baseline/translations_bpe.txt
+[2024-10-30 18:44:47] COMMAND: translate.py --data data/en-fr/prepared --dicts data/en-fr/prepared --checkpoint-path assignments/03/baseline/checkpoints_bpe/checkpoint_best.pt --output assignments/03/baseline/translations_bpe.txt
+[2024-10-30 18:44:47] Arguments: {'cuda': False, 'data': 'data/en-fr/prepared', 'source_lang': 'fr', 'target_lang': 'en', 'max_tokens': None, 'batch_size': 1, 'train_on_tiny': False, 'arch': 'lstm', 'max_epoch': 10000, 'clip_norm': 4.0, 'lr': 0.0003, 'patience': 3, 'log_file': None, 'save_dir': 'assignments/03/baseline/checkpoints_bpe', 'restore_file': 'checkpoint_last.pt', 'save_interval': 1, 'no_save': False, 'epoch_checkpoints': False, 'encoder_embed_dim': 64, 'encoder_embed_path': None, 'encoder_hidden_size': 64, 'encoder_num_layers': 1, 'encoder_bidirectional': 'True', 'encoder_dropout_in': 0.25, 'encoder_dropout_out': 0.25, 'decoder_embed_dim': 64, 'decoder_embed_path': None, 'decoder_hidden_size': 128, 'decoder_num_layers': 1, 'decoder_dropout_in': 0.25, 'decoder_dropout_out': 0.25, 'decoder_use_attention': 'True', 'decoder_use_lexical_model': 'False', 'device_id': 0, 'seed': 42, 'dicts': 'data/en-fr/prepared', 'checkpoint_path': 'assignments/03/baseline/checkpoints_bpe/checkpoint_best.pt', 'output': 'assignments/03/baseline/translations_bpe.txt', 'max_len': 128}
+[2024-10-30 18:44:47] Loaded a source dictionary (fr) with 4000 words
+[2024-10-30 18:44:47] Loaded a target dictionary (en) with 4000 words
+[2024-10-30 18:44:47] Loaded a model from checkpoint assignments/03/baseline/checkpoints_bpe/checkpoint_best.pt
+(atmt311) qiguo@Millennium-Falcon atmt_2024 % bash scripts/postprocess.sh \
+assignments/03/baseline/translations_bpe.txt \
+assignments/03/baseline/translations_bpe.p.txt en
+
+cat \
+assignments/03/baseline/translations_bpe.p.txt \
+| sacrebleu data/en-fr/raw/test.en
+
+{
+ "name": "BLEU",
+ "score": 13.1,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.1",
+ "verbose_score": "42.2/18.5/9.0/4.2 (BP = 1.000 ratio = 1.339 hyp_len = 5211 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.1"
+}
+(atmt311) qiguo@Millennium-Falcon atmt_2024 % 
