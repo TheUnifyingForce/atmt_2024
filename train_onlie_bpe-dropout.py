@@ -25,12 +25,12 @@ def apply_bpe_dropout(args, epoch):
 
     # Paths to the BPE scripts and preprocessed data
     bpe_scripts = "/Users/qiguo/miniforge3/lib/python3.12/site-packages/subword_nmt"
-    src_bpe_file = os.path.join(args.data, 'preprocessed/train.{:s}.bpe'.format(args.source_lang))
-    tgt_bpe_file = os.path.join(args.data, 'preprocessed/train.{:s}.bpe'.format(args.target_lang))
+    src_bpe_file = os.path.join(args.data, '../preprocessed/train.{:s}.bpe'.format(args.source_lang))
+    tgt_bpe_file = os.path.join(args.data, '../preprocessed/train.{:s}.bpe'.format(args.target_lang))
 
     # Paths for output files after BPE-dropout
-    src_bpe_applied = os.path.join(args.data, 'preprocessed/train.{:s}.bpe.dropout'.format(args.source_lang))
-    tgt_bpe_applied = os.path.join(args.data, 'preprocessed/train.{:s}.bpe.dropout'.format(args.target_lang))
+    src_bpe_applied = os.path.join(args.data, '../preprocessed/train.{:s}.bpe.dropout'.format(args.source_lang))
+    tgt_bpe_applied = os.path.join(args.data, '../preprocessed/train.{:s}.bpe.dropout'.format(args.target_lang))
 
     # Apply BPE-dropout to source and target language files
     call(
@@ -102,14 +102,14 @@ def main(args):
     logging.info('Loaded a target dictionary ({:s}) with {:d} words'.format(args.target_lang, len(tgt_dict)))
 
     # Load datasets
-    def load_data(split):
-        return Seq2SeqDataset(
-            src_file=os.path.join(args.data, '{:s}.{:s}'.format(split, args.source_lang)),
-            tgt_file=os.path.join(args.data, '{:s}.{:s}'.format(split, args.target_lang)),
-            src_dict=src_dict, tgt_dict=tgt_dict)
-
-    train_dataset = load_data(split='train') if not args.train_on_tiny else load_data(split='tiny_train')
-    valid_dataset = load_data(split='valid')
+    # def load_data(split):
+    #     return Seq2SeqDataset(
+    #         src_file=os.path.join(args.data, '{:s}.{:s}.bpe.dropout'.format(split, args.source_lang)),
+    #         tgt_file=os.path.join(args.data, '{:s}.{:s}.bpe.dropout'.format(split, args.target_lang)),
+    #         src_dict=src_dict, tgt_dict=tgt_dict)
+    #
+    # train_dataset = load_data(split='train') if not args.train_on_tiny else load_data(split='tiny_train')
+    # valid_dataset = load_data(split='valid')
 
     # Build model and optimization criterion
     model = models.build_model(args, src_dict, tgt_dict)
@@ -134,8 +134,8 @@ def main(args):
         apply_bpe_dropout(args, epoch)
 
         train_dataset = Seq2SeqDataset(
-            src_file=os.path.join(args.data, 'preprocessed/train.{:s}.bpe.dropout'.format(args.source_lang)),
-            tgt_file=os.path.join(args.data, 'preprocessed/train.{:s}.bpe.dropout'.format(args.target_lang)),
+            src_file=os.path.join(args.data, '../preprocessed/train.{:s}.bpe.dropout'.format(args.source_lang)),
+            tgt_file=os.path.join(args.data, '../preprocessed/train.{:s}.bpe.dropout'.format(args.target_lang)),
             src_dict=src_dict, tgt_dict=tgt_dict)
 
         train_loader = \

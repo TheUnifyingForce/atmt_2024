@@ -123,8 +123,13 @@ class LSTMEncoder(Seq2SeqEncoder):
         # Transpose batch: [batch_size, src_time_steps, num_features] -> [src_time_steps, batch_size, num_features]
         src_embeddings = _src_embeddings.transpose(0, 1)
 
+        ## Sort sequences by length in descending order
+        src_lengths_sorted, sorted_indices = torch.sort(src_lengths, descending=True)
+        src_embeddings_sorted = src_embeddings.index_select(1, sorted_indices)
+
         # Pack embedded tokens into a PackedSequence
-        packed_source_embeddings = nn.utils.rnn.pack_padded_sequence(src_embeddings, src_lengths.cpu())
+        # packed_source_embeddings = nn.utils.rnn.pack_padded_sequence(src_embeddings, src_lengths.cpu())
+        packed_source_embeddings = nn.utils.rnn.pack_padded_sequence(src_embeddings_sorted, src_lengths_sorted.cpu())
 
         # Pass source input through the recurrent layer(s)
         packed_outputs, (final_hidden_states, final_cell_states) = self.lstm(packed_source_embeddings)
@@ -139,6 +144,12 @@ class LSTMEncoder(Seq2SeqEncoder):
                 return torch.cat([outs[0: outs.size(0): 2], outs[1: outs.size(0): 2]], dim=2)
             final_hidden_states = combine_directions(final_hidden_states)
             final_cell_states = combine_directions(final_cell_states)
+
+        ## Undo the sorting to restore original order
+        _, unsorted_indices = sorted_indices.sort(0)
+        lstm_output = lstm_output.index_select(1, unsorted_indices)
+        final_hidden_states = final_hidden_states.index_select(1, unsorted_indices)
+        final_cell_states = final_cell_states.index_select(1, unsorted_indices)
 
         # Generate mask zeroing-out padded positions in encoder inputs
         src_mask = src_tokens.eq(self.dictionary.pad_idx)

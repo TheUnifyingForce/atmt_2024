@@ -20,10 +20,12 @@ class Seq2SeqDataset(Dataset):
             self.tgt_sizes = np.array([len(tokens) for tokens in self.tgt_dataset])
 
     def __getitem__(self, index):
+        tgt_tokens = torch.LongTensor(self.tgt_dataset[index])  # Define tgt_tokens here
         return {
             'id': index,
             'source': torch.LongTensor(self.src_dataset[index]),
             'target': torch.LongTensor(self.tgt_dataset[index]),
+            'tgt_lengths': torch.tensor(len(tgt_tokens)), #add for combine NMT
         }
 
     def __len__(self):
@@ -52,11 +54,13 @@ class Seq2SeqDataset(Dataset):
 
         # Sort by descending source length
         src_lengths = torch.LongTensor([s['source'].numel() for s in samples])
+        tgt_lengths = torch.LongTensor([s['tgt_lengths'].item() for s in samples])  # Gather target lengths
         src_lengths, sort_order = src_lengths.sort(descending=True)
         id = id.index_select(0, sort_order)
         src_tokens = src_tokens.index_select(0, sort_order)
         tgt_tokens = tgt_tokens.index_select(0, sort_order)
         tgt_inputs = tgt_inputs.index_select(0, sort_order)
+        tgt_lengths = tgt_lengths.index_select(0, sort_order)  # Sort tgt_lengths accordingly
 
         return {
             'id': id,
@@ -64,6 +68,7 @@ class Seq2SeqDataset(Dataset):
             'src_lengths': src_lengths,
             'tgt_tokens': tgt_tokens,
             'tgt_inputs': tgt_inputs,
+            'tgt_lengths': tgt_lengths,  # Return tgt_lengths
             'num_tokens': sum(len(s['target']) for s in samples),
         }
 

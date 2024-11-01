@@ -42,7 +42,9 @@ rm "$data/preprocessed/train.$tgt.p"
 
 ###############
 # BPE
-num_merges=20000
+num_merges=1000
+dropout_prob=0.1
+seed=42
 bpe_scripts=/Users/qiguo/miniforge3/lib/python3.12/site-packages/subword_nmt
 
 cat $data/preprocessed/train.$src | python $bpe_scripts/learn_bpe.py -s $num_merges > $data/preprocessed/train.$src.bpe
@@ -50,6 +52,12 @@ cat $data/preprocessed/train.$tgt | python $bpe_scripts/learn_bpe.py -s $num_mer
 
 cat $data/preprocessed/train.$src | python $bpe_scripts/apply_bpe.py -c $data/preprocessed/train.$src.bpe > $data/preprocessed/train.$src.bpe.applied
 cat $data/preprocessed/train.$tgt | python $bpe_scripts/apply_bpe.py -c $data/preprocessed/train.$tgt.bpe > $data/preprocessed/train.$tgt.bpe.applied
+
+# dropout
+#cat $data/preprocessed/train.$src.bpe.applied | python $bpe_scripts/apply_bpe.py --dropout $dropout_prob > $data/preprocessed/train.$src.bpe.dropout
+#cat $data/preprocessed/train.$tgt.bpe.applied | python $bpe_scripts/apply_bpe.py --dropout $dropout_prob > $data/preprocessed/train.$tgt.bpe.dropout
+cat $data/preprocessed/train.$src | python $bpe_scripts/apply_bpe.py -c $data/preprocessed/train.$src.bpe --dropout $dropout_prob --seed $seed > $data/preprocessed/train.$src.bpe.dropout
+cat $data/preprocessed/train.$tgt | python $bpe_scripts/apply_bpe.py -c $data/preprocessed/train.$tgt.bpe --dropout $dropout_prob --seed $seed > $data/preprocessed/train.$tgt.bpe.dropout
 
 ###############
 
