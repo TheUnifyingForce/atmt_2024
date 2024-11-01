@@ -88,6 +88,7 @@ def main(args):
 
     # Instantiate optimizer and learning rate scheduler
     optimizer = torch.optim.Adam(model.parameters(), args.lr)
+    optimizer.param_groups[0]['lr'] = args.lr
 
     # Load last checkpoint if one exists
     state_dict = utils.load_checkpoint(args, model, optimizer)  # lr_scheduler
@@ -141,6 +142,7 @@ def main(args):
 
             stats['loss'] += total_loss * len(sample['src_lengths']) / sample['num_tokens']
             stats['lr'] += optimizer.param_groups[0]['lr']
+            logging.info(f"Using learning rate: {optimizer.param_groups[0]['lr']}, batch size: {args.batch_size}")
             stats['num_tokens'] += num_tokens / len(sample['src_tokens'])
             stats['batch_size'] += batch_size
             stats['grad_norm'] += grad_norm
@@ -168,7 +170,7 @@ def main(args):
         if bad_epochs >= args.patience:
             logging.info('No validation set improvements observed for {:d} epochs. Early stop!'.format(args.patience))
             break
-
+    return valid_perplexity
 
 def validate(args, model, criterion, valid_dataset, epoch):
     """ Validates model performance on a held-out development set. """
@@ -212,7 +214,7 @@ def validate(args, model, criterion, valid_dataset, epoch):
 # grid_search for tune hyper-parameters
 def grid_search():
     """ Performs grid search over learning rate and batch size to find the best hyperparameters. """
-    learning_rates = [0.0001, 0.0003, 0.001]
+    learning_rates = [0.0003, 0.001, 0.003]
     batch_sizes = [500, 1000, 2000]
     best_perplexity = float('inf')
     best_params = {}
@@ -223,6 +225,7 @@ def grid_search():
             args = get_args()
             args.lr = lr
             args.batch_size = batch_size
+            # logging.info(f"Using learning rate: {args.lr}, batch size: {args.batch_size}")
 
             # Run training and capture the validation perplexity
             perplexity = main(args)
@@ -235,6 +238,57 @@ def grid_search():
             logging.info(f"Validation perplexity: {perplexity}")
 
     logging.info(f"Best hyperparameters: {best_params}, with perplexity: {best_perplexity}")
+
+# def grid_search():
+#     """ Performs grid search over learning rate and batch size to find the best hyperparameters. """
+#     learning_rates = [0.0003, 0.001, 0.003]
+#     batch_sizes = [500, 1000, 2000]
+#     best_perplexity = float('inf')
+#     best_params = {}
+#     patience = 3  # Early stopping patience
+#     for lr in learning_rates:
+#         for batch_size in batch_sizes:
+#             logging.info(f"Testing with learning rate: {lr}, batch size: {batch_size}")
+#             args = get_args()  # Get default arguments
+#             args.lr = lr
+#             args.batch_size = batch_size
+#
+#             # Early stopping variables
+#             bad_epochs = 0
+#             best_val_loss = float('inf')
+#
+#             try:
+#                 # Run training
+#                 last_epoch = 0
+#                 for epoch in range(args.max_epoch):
+#                     # Call main to train the model for one epoch and return the validation loss
+#                     val_loss = main(args)
+#
+#                     # Check for early stopping
+#                     if val_loss < best_val_loss:
+#                         best_val_loss = val_loss
+#                         bad_epochs = 0  # Reset bad epochs
+#                     else:
+#                         bad_epochs += 1
+#                         logging.info(
+#                             f"bad_epochs={bad_epochs}")
+#
+#                     if bad_epochs >= patience:
+#                         logging.info(f"Early stopping at epoch {epoch} for lr={lr}, batch_size={batch_size}")
+#                         break
+#
+#                 # Check if current setup is the best
+#                 if best_val_loss < best_perplexity:
+#                     best_perplexity = best_val_loss
+#                     best_params = {'learning_rate': lr, 'batch_size': batch_size}
+#
+#                 logging.info(f"Best validation perplexity for lr={lr}, batch_size={batch_size}: {best_val_loss:.4f}")
+#
+#             except Exception as e:
+#                 logging.error(f"Error occurred for lr={lr}, batch_size={batch_size}: {str(e)}")
+#                 continue  # Skip to the next combination
+#
+#     logging.info(f"Best hyperparameters: {best_params}, with perplexity: {best_perplexity:.4f}")
 #############
 
 if __name__ == '__main__':
