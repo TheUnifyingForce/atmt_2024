@@ -36,7 +36,7 @@ def get_args():
     parser.add_argument('--max-epoch', default=10000, type=int, help='force stop training at specified epoch')
     parser.add_argument('--clip-norm', default=4.0, type=float, help='clip threshold of gradients')
     parser.add_argument('--lr', default=0.003, type=float, help='learning rate')
-    parser.add_argument('--patience', default=3, type=int,
+    parser.add_argument('--patience', default=5, type=int,
                         help='number of epochs without improvement on validation set before early stopping')
 
     # Add checkpoint arguments
@@ -107,8 +107,14 @@ def main(args):
     last_epoch = state_dict['last_epoch'] if state_dict is not None else -1
     #print("optimizer2", optimizer)
 
-    for param_group in optimizer.param_groups: # reset lr to the assigned parameter
-        param_group['lr'] = args.lr
+    # Initialize ReduceLROnPlateau learning rate scheduler
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3, verbose=True, threshold=0.0001) # threshold
+
+    # print("args", args)
+    # Arguments: {'cuda': False, 'data': 'data/en-fr/prepared', 'source_lang': 'fr', 'target_lang': 'en', 'max_tokens': None, 'batch_size': 500, 'train_on_tiny': False, 'ae_loss_weight': 0.5, 'arch': 'lstm', 'max_epoch': 10000, 'clip_norm': 4.0, 'lr': 0.003, 'patience': 3, 'log_file': None, 'save_dir': 'assignments/03/baseline/checkpoints_combineNMT_lr0.003', 'restore_file': 'checkpoint_last.pt', 'save_interval': 1, 'no_save': False, 'epoch_checkpoints': False, 'encoder_embed_dim': 64, 'encoder_embed_path': None, 'encoder_hidden_size': 64, 'encoder_num_layers': 1, 'encoder_bidirectional': 'True', 'encoder_dropout_in': 0.25, 'encoder_dropout_out': 0.25, 'decoder_embed_dim': 64, 'decoder_embed_path': None, 'decoder_hidden_size': 128, 'decoder_num_layers': 1, 'decoder_dropout_in': 0.25, 'decoder_dropout_out': 0.25, 'decoder_use_attention': 'True', 'decoder_use_lexical_model': 'False', 'device_id': 0}
+    # for param_group in optimizer.param_groups: # reset lr to the assigned parameter
+    #     param_group['lr'] = args.lr
+        # param_group['ae-loss-weight'] = args.ae_loss_weight * (0.99 ** epoch)
     # print(state_dict)
    # print("optimizer3", optimizer)
 
@@ -117,11 +123,19 @@ def main(args):
     best_validate = float('inf')
 
     for epoch in range(last_epoch + 1, args.max_epoch):
+        # Descend ae_loss_weight
+        current_ae_loss_weight = args.ae_loss_weight * (0.99 ** epoch)
+        param_group = optimizer.param_groups[0]
+        param_group['ae-loss-weight'] = current_ae_loss_weight
+
         train_loader = \
             torch.utils.data.DataLoader(train_dataset, num_workers=1, collate_fn=train_dataset.collater,
                                         batch_sampler=BatchSampler(train_dataset, args.max_tokens, args.batch_size, 1,
                                                                    0, shuffle=False, seed=42))
         model.train()
+        current_lr = optimizer.param_groups[0]['lr']
+        # print(f"Epoch {epoch}, learning rate: {current_lr}")
+
         stats = OrderedDict()
         stats['loss'] = 0
         stats['ae_loss'] = 0  # Track autoencoding loss
@@ -197,6 +211,10 @@ def main(args):
         valid_perplexity = validate(args, model, criterion, valid_dataset, epoch)
         model.train()
 
+        scheduler.step(valid_perplexity)
+        for param_group in optimizer.param_groups:
+            print(f"Epoch {epoch}, learning rate: {param_group['lr']}")
+
         # Save checkpoints
         if epoch % args.save_interval == 0:
             utils.save_checkpoint(args, model, optimizer, epoch, valid_perplexity)  # lr_scheduler
@@ -207,6 +225,8 @@ def main(args):
             bad_epochs = 0
         else:
             bad_epochs += 1
+            print("bad_epochs", bad_epochs)
+            print("args.patience", args.patience)
         if bad_epochs >= args.patience:
             logging.info('No validation set improvements observed for {:d} epochs. Early stop!'.format(args.patience))
             break
