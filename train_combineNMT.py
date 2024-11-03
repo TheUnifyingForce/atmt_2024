@@ -36,7 +36,7 @@ def get_args():
     parser.add_argument('--max-epoch', default=10000, type=int, help='force stop training at specified epoch')
     parser.add_argument('--clip-norm', default=4.0, type=float, help='clip threshold of gradients')
     parser.add_argument('--lr', default=0.003, type=float, help='learning rate')
-    parser.add_argument('--patience', default=5, type=int,
+    parser.add_argument('--patience', default=6, type=int,
                         help='number of epochs without improvement on validation set before early stopping')
 
     # Add checkpoint arguments
@@ -108,7 +108,7 @@ def main(args):
     #print("optimizer2", optimizer)
 
     # Initialize ReduceLROnPlateau learning rate scheduler
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3, verbose=True, threshold=0.0001) # threshold
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=3, verbose=True, threshold=0.0001) # threshold
 
     # print("args", args)
     # Arguments: {'cuda': False, 'data': 'data/en-fr/prepared', 'source_lang': 'fr', 'target_lang': 'en', 'max_tokens': None, 'batch_size': 500, 'train_on_tiny': False, 'ae_loss_weight': 0.5, 'arch': 'lstm', 'max_epoch': 10000, 'clip_norm': 4.0, 'lr': 0.003, 'patience': 3, 'log_file': None, 'save_dir': 'assignments/03/baseline/checkpoints_combineNMT_lr0.003', 'restore_file': 'checkpoint_last.pt', 'save_interval': 1, 'no_save': False, 'epoch_checkpoints': False, 'encoder_embed_dim': 64, 'encoder_embed_path': None, 'encoder_hidden_size': 64, 'encoder_num_layers': 1, 'encoder_bidirectional': 'True', 'encoder_dropout_in': 0.25, 'encoder_dropout_out': 0.25, 'decoder_embed_dim': 64, 'decoder_embed_path': None, 'decoder_hidden_size': 128, 'decoder_num_layers': 1, 'decoder_dropout_in': 0.25, 'decoder_dropout_out': 0.25, 'decoder_use_attention': 'True', 'decoder_use_lexical_model': 'False', 'device_id': 0}
