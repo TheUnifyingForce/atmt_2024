@@ -12,6 +12,8 @@ from seq2seq.data.dictionary import Dictionary
 from seq2seq.data.dataset import Seq2SeqDataset, BatchSampler
 from seq2seq.beam import BeamSearch, BeamSearchNode
 
+import time
+
 
 def get_args():
     """ Defines generation-specific hyper-parameters. """
@@ -225,6 +227,32 @@ def main(args):
                 out_file.write(all_hyps[sent_id] + '\n')
 
 
+# if __name__ == '__main__':
+#     args = get_args()
+#     main(args)
+
+
 if __name__ == '__main__':
     args = get_args()
-    main(args)
+
+    # Define beam sizes to test
+    beam_sizes = [1, 5, 10, 15, 20, 25]
+
+    # # Loop through different beam sizes and generate translations
+    # for k in beam_sizes:
+    #     args.beam_size = k  # Set beam size
+    #     args.output = f"translations_beam_my_{k}.txt"  # Set output file for each beam size
+    #     print(f"Running beam search with beam size {k}...")
+    #     main(args)
+
+    with open("beam_search_times.txt", "w") as file:
+        for k in beam_sizes:
+            args.beam_size = k
+            args.output = f"translations_beam_baseline_{k}.txt"
+            print(f"Running beam search with beam size {k}...")
+            start_time = time.time()
+            main(args)
+
+            elapsed_time = time.time() - start_time
+            print(f"Beam size {k} completed in {elapsed_time:.2f} seconds.")
+            file.write(f"Beam size {k} completed in {elapsed_time:.2f} seconds.\n")

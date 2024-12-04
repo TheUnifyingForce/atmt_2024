@@ -1,0 +1,6 @@
+Beam size 1 completed in 9.54 seconds.
+Beam size 5 completed in 19.63 seconds.
+Beam size 10 completed in 41.30 seconds.
+Beam size 15 completed in 69.16 seconds.
+Beam size 20 completed in 106.33 seconds.
+Beam size 25 completed in 152.23 seconds.

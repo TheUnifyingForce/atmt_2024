@@ -1,2 +1,7 @@
 assignments/01/baseline/
 __pycache__/
+.DS_Store
+.DS_Store
+data/.DS_Store
+seq2seq/.DS_Store
+share/.DS_Store
