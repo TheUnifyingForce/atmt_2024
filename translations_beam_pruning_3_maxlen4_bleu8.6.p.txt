@@ -1,0 +1,500 @@
+I'm going to
+I'm afraid you
+I close the door
+He took down his
+He is more than
+I'd like to
+I don't drink
+Is his house is
+Tom is more than
+There is no one
+Tom seems to <pad>
+Is there a movie
+He is what <pad>
+He turned down his
+I'm very high
+Tom doesn't like
+Women will take <pad>
+Thank you will be
+He decided to have
+The company is <pad>
+They don't want
+I'm happy,
+You must learn to
+Let's a <pad>
+You're lucky to
+It is <pad> <pad>
+I've ever <pad>
+It'll <pad> me
+I learned French before
+You've got <pad>
+Little girl <pad> nothing
+As I <pad> <pad>
+Do you have already
+Talk of <pad> <pad>
+I know I can
+I'm going to
+What did you have
+Do you have any
+The experience is important
+The of <pad> <pad>
+Why didn't you
+It's on what
+She took a life
+Tom doesn't tell
+I know what's
+You'll tell me
+This room seems to
+I took a few
+The children <pad> <pad>
+What did he have
+Please have to <pad>
+Tom took a beer
+When I have the
+I wanted to know
+He will be a
+Tom doesn't know
+He was going <pad>
+He's a <pad>
+Everyone had been a
+I told him not
+I'd like to
+The "did <pad>
+That's only a
+She can't see
+Don't leave on
+I started to <pad>
+A cat a cat
+What are <pad> <pad>
+Can you keep this
+The company, the
+Could you do it
+Let's get <pad>
+They have what they
+Does Tom buy <pad>
+It's very easy
+I don't like
+It's a good
+He is the new
+I'm going to
+Come with me to
+I'll tell you
+He turned a few
+Can you read what
+Is it possible to
+The health is in
+He is <pad> that
+I know you want
+Does it <pad> <pad>
+Thanks to this book
+I think Tom is
+There was still too
+I thought you'd
+We've got together
+Do you have any
+To make <pad> a
+I've got <pad>
+All the trip,
+You're going to
+He doesn't like
+It's an <pad>
+She must have a
+Is there your friends
+Those of <pad> are
+How can you be
+"Look, a
+You can't buy
+Do you remember his
+Tom, who is
+It won't be
+Are you your parents
+I want you to
+What are you going
+Those who have the
+You were afraid,
+Is it your bicycle
+I know Tom doesn
+What is the <pad>
+Call a doctor will
+Tom said everything he
+I'm not the
+Who would you like
+I'd like to
+Do you know where
+Tom was afraid <pad>
+This car has a
+Have you already <pad>
+She's going to
+Someone has <pad> <pad>
+I don't like
+I think we're
+I think Tom is
+I took a glass
+What are you going
+I still've still
+He has changed to
+You can tell me
+"He died or
+Speak please <pad> me
+They're very high
+He doesn't believe
+There are a table
+She took for a
+When he <pad> <pad>
+I saw you at
+Are you sure?
+He was in a
+The same was <pad>
+He didn't <pad>
+My grandfather's <pad>
+Don't let any
+No, just there
+I like my baby
+I always have a
+Tom is a the
+I think the answer
+What's the done
+I didn't know
+Look on <pad> the
+Let's go to
+You won't tell
+I can go to
+Tom is at the
+I can't help
+Thank you from the
+I'd like you
+My father didn't
+I'm going <pad>
+I don't know
+You know everyone to
+Better, <pad> <pad>
+We were glad on
+I've got <pad>
+You're going to
+Do you know what
+Is this <pad> me
+Tom has been <pad>
+The friends of Tom
+We never'll <pad>
+All you must do
+What's the <pad>
+I took him the
+It must be the
+I bought this car
+This word is a
+She took her <pad>
+I think you should
+Did you read a
+How do you know
+You don't have
+It's an <pad>
+As I thought it
+I'll find <pad>
+He will be <pad>
+The kitchen is interesting
+The animals can <pad>
+He wrote a lot
+You must take you
+He got a <pad>
+The boys was <pad>
+He has <pad> <pad>
+I'll keep the
+That's why I
+It's very good
+Oh, I haven
+In this time there
+There are a lot
+He likes walk in
+Do you think it
+Don't stay <pad>
+Tom closed the door
+I have here to
+I know you're
+The mother is always
+I love the <pad>
+How did I eat
+After the death of
+This poor cat is
+How did you get
+It was very kind
+Tom has a <pad>
+He has <pad> me
+I have a few
+Tom has a never
+Is are <pad> these
+She found the door
+I'll be happy
+Tom doesn't have
+I know Tom is
+They took him to
+I like him <pad>
+Tom has a <pad>
+We want Tom to
+I really like to
+I can't help
+My mother works in
+The old <pad> who
+Do I have any
+My mother lives alone
+I'd like <pad>
+You're on the
+It's not a
+You're too old
+He is what she
+He speaks as if
+He's getting <pad>
+Are you sure you
+What is that <pad>
+I like you to
+I got up to
+The car is <pad>
+They don't have
+She took him <pad>
+It's <pad>,
+A little!
+You have to have
+How many students have
+Can I ask her
+If you don't
+At least, he
+One way a <pad>
+I like English,
+It won't do
+She has the most
+Please give up or
+We were on <pad>
+Tom was a happy
+She took the floor
+Your never had a
+He doesn't like
+It wasn't in
+They don't have
+Our house and we
+Tom has a <pad>
+It's cold cold
+I need a new
+I must have to
+She took him to
+One dog has <pad>
+In Japan is still
+The most of children
+Do you don't
+He doesn <pad> <pad>
+I found this,
+The France is on
+I love this of
+They want to see
+I like a lot
+Tom was an a
+The girl had been
+How many time do
+Do I can use
+This class are <pad>
+"Heart and"
+I'm going to
+I was too tired
+I'm sure of
+Do your car's
+The last thing I
+Do you have any
+I'm going <pad>
+She's sleeping.
+Please get this <pad>
+I can't leave
+Don't tell you
+Please take her,
+Do you have any
+A job has four
+What's the idea
+As more <pad> <pad>
+That's a <pad>
+We must give <pad>
+I forgot to tell
+What did you do
+You can't tell
+This movie is so
+I thought you can
+I went to the
+His mother will <pad>
+He was afraid <pad>
+The the snow <pad>
+I don't know
+Do you have any
+We asked me to
+I am a <pad>
+I didn't know
+I'm going to
+I smoke some <pad>
+You should choose a
+You'd better talk
+What do you think
+I've never seen
+You're born so
+What does she bought
+I'm not a
+Tom seems really the
+I love the way
+He had a <pad>
+You should think to
+The mother took the
+I'm sorry to
+Mother is a mother
+The music is the
+A a <pad> is
+How much did you
+Leave your gun.
+The boys have a
+She doesn't have
+Thank you to be
+She took me a
+He said that we
+It has a very
+Do you mind something
+This tired <pad> <pad>
+There's something I
+How is the time
+There is really no
+I lost the of
+I want you to
+I can go there
+She took the <pad>
+I read a letter
+This is <pad> <pad>
+You know what <pad>
+She was born <pad>
+I don't want
+I'm going to
+The most day of
+I want to eat
+Don't have enough
+Don't need to
+Tom was in the
+I think that the
+You should go to
+I'm sorry of
+In bed!
+She seems to get
+Everyone thinks <pad> <pad>
+We'll have a
+This is not <pad>
+"Were you what
+You're going to
+It's not my
+Do you want to
+I'm so interested
+All you must do
+You can't go
+You're more than
+I want you to
+Tom's a <pad>
+I'm not big
+I'm really really
+I have no idea
+Tom doesn't want
+She took off <pad>
+Do you have a
+The company has <pad>
+He's a <pad>
+There's a lot
+I'm not a
+A of <pad> <pad>
+Who did you get
+Tom has <pad> the
+That was a <pad>
+He can come to
+Saw the <pad> <pad>
+I'm a friend
+It's what I
+Get up <pad> <pad>
+Is this your wife
+I'm poor.
+I don't like
+I want to leave
+One of <pad> was
+I have a few
+I can get you
+Do the go out
+Do you want me
+I have a shower
+Try to <pad> <pad>
+Call me when you
+It's the house
+Let's keep <pad>
+Tom went to <pad>
+I think it's
+Why are you going
+I worked hard,
+Someone must have a
+This coffee is the
+He is bit <pad>
+I'd like you
+The fish don't
+What are there as
+I need a drink
+Are you tired?
+Snow has <pad> <pad>
+I guess it's
+That's an <pad>
+It's <pad> <pad>
+Tom needs to do
+It's a good
+You don't have
+I'm tired of
+They can't give
+He has been <pad>
+Seen on, <pad>
+Do you have any
+You've got a
+She lives in a
+It's <pad> <pad>
+The girls <pad> <pad>
+What happened the dog
+Does this <pad> is
+I can't believe
+Do you have any
+You remember me your
+Do it <pad> me
+Layla took <pad> his
+I don't have
+I'm very interested
+Please give <pad> <pad>
+I had the most
+I saw him at
+How many times are
+My little friend was
+Do you often have
+The floor was the
+The movie was not
+I learned how to
+I wonder where Tom
+He will be <pad>
+What are you supposed
+"Were you what
+We'll go to
+Is there any <pad>
+We'll get the
+She didn't even
+Tom could do that
+Do you like the
+What do you say
+Do you have any
+I don't remember
+It was <pad> <pad>
+You are a <pad>
+I'm lucky to
+She is a <pad>
+I'm sorry,
+I read that the
+You're all in
+I've already done
+The boy tried to
+The train is in
+I heard that you
+There were no one
+Really sure you can
+You should have to
+We is young than
+Please give me the
+I need to know
+Let's get <pad>
+He has no more
